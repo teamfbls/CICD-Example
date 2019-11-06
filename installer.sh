@@ -1,6 +1,7 @@
 # This is based on the book "Openshift in Action" but works with OCP 4
 
 PROJECT="dev"
+TESTPROJECT="test"
 
 oc new-project ${PROJECT} --display-name="ToDo App - Dev"
 
