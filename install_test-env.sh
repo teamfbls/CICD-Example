@@ -46,3 +46,24 @@ sleep 15
 oc get pods
 
 echo ">> POD will crash since it cannot disconver the service at this point"
+echo "injecting environment variable"
+# Use data from above
+oc set env dc/todo-app-flask-mongo "MONGO_CONNECTION_URI=mongodb://oiatestuser:password@mongodb/tododb"
+
+echo "Creating image stream triggers, so it will be updated once DEV environment gets tagges as promoteToTest"
+oc patch dc todo-app-flask-mongo --patch '{"spec":{"triggers": [{
+                "imageChangeParams": {
+                    "automatic": true,
+                    "containerNames": [
+                        "todo-app-flask-mongo"
+                    ],
+                    "from": {
+                        "kind": "ImageStreamTag",
+                        "name": "todo-app-flask-mongo:promoteToTest",
+                        "namespace": "'${PROJECT}'"
+                    }
+                },
+                "type": "ImageChange"
+            }
+        ]
+ }}'
