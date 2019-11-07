@@ -1,8 +1,8 @@
 # This is based on the book "Openshift in Action" but works with OCP 4
 
-TESTPROJECT=`cat installer.sh | grep "^TESTPROJECT" | awk -F"=" '{print $2}' | sed -e 's/\"//g'`
+TESTPROJECT=`cat 1_install_dev-env.sh | grep "^TESTPROJECT" | awk -F"=" '{print $2}' | sed -e 's/\"//g'`
 echo TESTPROJECT="$TESTPROJECT"
-PROJECT=`cat installer.sh | grep "^PROJECT" | awk -F"=" '{print $2}' | sed -e 's/\"//g'`
+PROJECT=`cat 1_install_dev-env.sh | grep "^PROJECT" | awk -F"=" '{print $2}' | sed -e 's/\"//g'`
 echo PROJECT="$PROJECT"
 
 echo "Creating project ${TESTPROJECT}"
