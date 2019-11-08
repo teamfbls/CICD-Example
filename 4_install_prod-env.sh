@@ -17,4 +17,4 @@ oc project ${PRODPROJECT}
 
 oc create -f templates/prod-todo-app-flask-mongo.json
 
-oc new-app --template="prod/prod-todo-app-flask-mongo"
+oc new-app --template="prod-todo-app-flask-mongo"
