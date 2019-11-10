@@ -5,9 +5,9 @@ echo PRODPROJECT="$PRODPROJECT"
 PROJECT=`cat 1_install_dev-env.sh | grep "^PROJECT" | awk -F"=" '{print $2}' | sed -e 's/\"//g'`
 echo PROJECT="$PROJECT"
 
-IMGSTREAM=$(oc describe imagestream todo-app-flask-mongo | grep sha256 | grep '*' | sed -e 's/  \* image-registry.openshift-image-registry.svc:5000\/dev\///' | head -n 1)
+IMGSTREAM=$(oc describe imagestream todo-app-flask-mongo -n ${PROJECT} | grep sha256 | grep '*' | sed -e 's/  \* image-registry.openshift-image-registry.svc:5000\/dev\///' | head -n 1)
 echo "Tagging as promoteToProd"
-oc tag ${IMGSTREAM} ${PROJECT}/todo-app-flask-mongo:promoteToProd
+oc tag ${IMGSTREAM} ${PROJECT}/todo-app-flask-mongo:promoteToProd -n ${PROJECT}
 
 echo "Creating project ${TESTPROJECT}"
 oc new-project ${PRODPROJECT} --display-name="ToDo App - Prod"
