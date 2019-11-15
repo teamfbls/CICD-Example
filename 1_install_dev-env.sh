@@ -3,6 +3,7 @@
 PROJECT="dev"
 TESTPROJECT="test"
 PRODPROJECT="prod"
+JENKINSPROJECT="cicd"
 
 oc new-project ${PROJECT} --display-name="ToDo App - Dev"
 
